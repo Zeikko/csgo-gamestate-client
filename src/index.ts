@@ -1,16 +1,22 @@
 interface Gamestate {
-
+  round: number
 }
 
-let gamestate: Gamestate | null = null
+export class CSGOGamestateClient {
+  gamestate: Gamestate | null
 
-export const setGamestate = (newGamestate: string) => {
-  gamestate = newGamestate
-}
-
-export const getGamestate = (): Gamestate => {
-  if (gamestate === null) {
-    throw new Error('Gamestate has not been set yet. Please call "setGamestate" before "getGamestate"')
+  constructor() {
+    this.gamestate = null
   }
-  return gamestate
+
+  setGamestate = (newGamestate: string): void => {
+    this.gamestate = JSON.parse(newGamestate) as Gamestate
+  }
+
+  getGamestate = (): Gamestate => {
+    if (this.gamestate === null) {
+      throw new Error('Gamestate has not been set yet. Please call "setGamestate" before "getGamestate"')
+    }
+    return this.gamestate
+  }
 }
