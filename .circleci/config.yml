@@ -1,19 +1,36 @@
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
-workflows:
-  node-tests:
-    jobs:
+jobs:
+  lint-testunit:
+    docker:
+      - image: circleci/node:8
+
+    steps:
+      - checkout
+
       - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
+          key: node-modules-{{ checksum ".circleci/config.yml" }}-{{ checksum "yarn.lock" }}
+
       - run:
-          name: Install Dependencies
-          command: yarn install --immutable
+          name: Install NPM modules
+          command: |
+            yarn
+
+      - run:
+          name: Lint
+          command: |
+            yarn lint
+
+      - run:
+          name: Test
+          command: |
+            yarn test
+
+      - run:
+          name: Codecov
+          command: |
+            yarn codecov
+
       - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
+          key: node-modules-{{ checksum ".circleci/config.yml" }}-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
-      - node/test
+            - ./node_modules
