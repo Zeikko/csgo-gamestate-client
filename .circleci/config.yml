@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-  lint-testunit:
+  test:
     docker:
       - image: circleci/node:8
 
@@ -16,21 +16,18 @@ jobs:
             yarn
 
       - run:
-          name: Lint
-          command: |
-            yarn lint
-
-      - run:
           name: Test
           command: |
             yarn test
-
-      - run:
-          name: Codecov
-          command: |
-            yarn codecov
 
       - save_cache:
           key: node-modules-{{ checksum ".circleci/config.yml" }}-{{ checksum "yarn.lock" }}
           paths:
             - ./node_modules
+
+workflows:
+  version: 2
+  build-and-test:
+    jobs:
+      - test
+
