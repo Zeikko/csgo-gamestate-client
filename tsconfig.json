@@ -8,9 +8,9 @@
     "noImplicitAny": true,
     "outDir": "build",
     "resolveJsonModule": true,
-    "rootDir": "src",
+    "rootDir": ".",
     "strict": true,
     "target": "ES2019"
   },
-  "exclude": ["node_modules", "**/*.test.ts"]
+  "exclude": ["node_modules", "**/*.test.ts", "build"]
 }
