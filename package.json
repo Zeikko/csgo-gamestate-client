@@ -5,21 +5,23 @@
   "main": "build/index.js",
   "scripts": {
     "build": "rimraf ./build && tsc",
-    "prepublish": "yarn build",
+    "prepare": "yarn build",
     "test": "jest"
+  },
+  "homepage": "https://github.com/Zeikko/csgo-gamestate-client",
+  "bugs": {
+    "url" : "https://github.com/Zeikko/csgo-gamestate-client/issues"
   },
   "keywords": [],
   "author": "Jaakko Ojalehto",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "@types/node": "^14.14.25",
     "jest": "^26.6.3",
     "rimraf": "^3.0.2",
     "ts-jest": "^26.5.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.4"
-  },
-  "dependencies": {
-    "@types/jest": "^26.0.20"
   }
 }
