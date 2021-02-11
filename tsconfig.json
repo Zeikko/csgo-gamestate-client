@@ -8,9 +8,12 @@
     "noImplicitAny": true,
     "outDir": "build",
     "resolveJsonModule": true,
-    "rootDir": ".",
+    "rootDir": "src/",
     "strict": true,
-    "target": "ES2019"
+    "target": "ES2019",
+    "declaration": true,
+    "composite": false,
+    "declarationMap": true
   },
-  "exclude": ["node_modules", "**/*.test.ts", "build"]
+  "exclude": ["node_modules", "**/*.test.ts", "build", "*.js", "coverage/**", "src/fixtures/**"]
 }
