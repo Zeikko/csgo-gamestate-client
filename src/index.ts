@@ -1,4 +1,5 @@
 import reporter from 'io-ts-reporters'
+export { GameState } from './gamestate'
 import { GameState, GameStateCodec } from './gamestate'
 
 export const parseGameState = (newGameState: string): GameState => {
