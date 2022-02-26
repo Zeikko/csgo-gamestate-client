@@ -1,14 +1,12 @@
-import { parseGameState } from './index'
+import { parseOriginalGameState } from './index'
 import { playingGameState } from './fixtures/gamestate'
 
-describe('parseGameState', () => {
+describe('parseOriginalGameState', () => {
   it('returns parse gamestate', () => {
-    expect(parseGameState(playingGameState)).toMatchSnapshot()
+    expect(parseOriginalGameState(playingGameState)).toMatchSnapshot()
   })
 
   it('fails', () => {
-    expect(() => parseGameState('{ "bad": "input" }')).toThrow(
-      'Expecting { name: string, appid: number, version: number, steamid: string, timestamp: number } at provider but instead got: undefined',
-    )
+    expect(() => parseOriginalGameState('{ "bad": "input" }')).toThrowErrorMatchingSnapshot()
   })
 })

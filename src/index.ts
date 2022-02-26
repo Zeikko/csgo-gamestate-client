@@ -1,13 +1,12 @@
-import reporter from 'io-ts-reporters'
-export { GameState } from './gamestate'
-import { GameState, GameStateCodec } from './gamestate'
+export * from './original-gamestate'
+import { OriginalGameState, OriginalGameStateSchema } from './original-gamestate'
+
+export const parseOriginalGameState = (newGameState: string): OriginalGameState => {
+  const json: OriginalGameState = JSON.parse(newGameState)
+  return OriginalGameStateSchema.parse(json)
+}
 
 export const parseGameState = (newGameState: string): GameState => {
-  const parsed: GameState = JSON.parse(newGameState)
-  const result = GameStateCodec.decode(parsed)
-  const error = reporter.report(result)
-  if (error.length) {
-    throw new Error(error.join(', '))
-  }
-  return parsed
+  const originalGameState = parseOriginalGameState(newGameState)
+  return OriginalGameStateSchema.parse(json)
 }

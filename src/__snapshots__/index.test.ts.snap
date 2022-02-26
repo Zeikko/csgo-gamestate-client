@@ -1,6 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parseGameState returns parse gamestate 1`] = `
+exports[`parseOriginalGameState fails 1`] = `
+"8 validation issue(s)
+
+  Issue #0: unrecognized_keys at 
+  Unrecognized key(s) in object: 'bad'
+
+  Issue #1: invalid_type at provider
+  Required
+
+  Issue #2: invalid_type at map
+  Required
+
+  Issue #3: invalid_type at round
+  Required
+
+  Issue #4: invalid_type at player
+  Required
+
+  Issue #5: invalid_type at allplayers
+  Required
+
+  Issue #6: invalid_type at phase_countdowns
+  Required
+
+  Issue #7: invalid_type at grenades
+  Required
+"
+`;
+
+exports[`parseOriginalGameState returns parse gamestate 1`] = `
 Object {
   "allplayers": Object {
     "76561197961610974": Object {
