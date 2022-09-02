@@ -63,11 +63,12 @@ const GameStateActivityCodec = t.union([
 ])
 export type GameStateActivity = t.TypeOf<typeof GameStateActivityCodec>
 
-const GameStatePlayerStateCodec = t.type({
+const GameStatePlayerStateType = t.type({
   health: t.number,
   armor: t.number,
   helmet: t.boolean,
   flashed: t.number,
+  burning: t.number,
   smoked: t.number,
   money: t.number,
   round_kills: t.number,
@@ -75,6 +76,10 @@ const GameStatePlayerStateCodec = t.type({
   round_totaldmg: t.number,
   equip_value: t.number,
 })
+const GameStatePlayerStatePartial = t.partial({
+  defusekit: t.boolean,
+})
+const GameStatePlayerStateCodec = t.intersection([GameStatePlayerStateType, GameStatePlayerStatePartial])
 export type GameStatePlayerState = t.TypeOf<typeof GameStatePlayerStateCodec>
 
 const GameStatePlayerCodec = t.type({
@@ -87,17 +92,22 @@ const GameStatePlayerCodec = t.type({
 })
 export type GameStatePlayer = t.TypeOf<typeof GameStatePlayerCodec>
 
-const GameStateAllPlayerStateCodec = t.type({
+const GameStateAllPlayerStateType = t.type({
   health: t.number,
   armor: t.number,
   helmet: t.boolean,
   flashed: t.number,
+  burning: t.number,
   money: t.number,
   round_kills: t.number,
   round_killhs: t.number,
   round_totaldmg: t.number,
   equip_value: t.number,
 })
+const GameStateAllPlayerStatePartial = t.partial({
+  defusekit: t.boolean,
+})
+const GameStateAllPlayerStateCodec = t.intersection([GameStateAllPlayerStateType, GameStateAllPlayerStatePartial])
 export type GameStateAllPlayerState = t.TypeOf<typeof GameStateAllPlayerStateCodec>
 
 const GameStateAllPlayerMatchStatsCodec = t.type({
@@ -112,7 +122,7 @@ export type GameStateAllPlayerMatchStats = t.TypeOf<typeof GameStateAllPlayerMat
 const GameStateWeaponStateCodec = t.union([t.literal('active'), t.literal('holstered')])
 export type GameStateWeaponState = t.TypeOf<typeof GameStateWeaponStateCodec>
 
-const GameStateWeaponType = t.partial({
+const GameStateWeaponType = t.type({
   name: t.string,
   paintkit: t.string,
   type: t.string,
@@ -131,6 +141,9 @@ const GameStateAllPlayerWeaponsCodec = t.partial({
   weapon_1: GameStateWeaponCodec,
   weapon_2: GameStateWeaponCodec,
   weapon_3: GameStateWeaponCodec,
+  weapon_4: GameStateWeaponCodec,
+  weapon_5: GameStateWeaponCodec,
+  weapon_6: GameStateWeaponCodec,
 })
 export type GameStateAllPlayerWeapons = t.TypeOf<typeof GameStateAllPlayerWeaponsCodec>
 

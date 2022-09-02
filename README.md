@@ -10,6 +10,13 @@ Parses the given game state string. Returns the parsed GameState object.
 
 **newGameState: string** This is the string that the CS:GO client sends as a HTTP POST message.
 
+#### function getTeams(newGameState: GameState): Teams
+
+Returns the teams and their players. Check `Teams` interface for details.
+
+**newGameState: GameState** This is the parsed GameState return by `parseGameState` function.
+
+
 ## Example
 
 An example to create an endpoint to receive the CS:GO Game State Integration data and an endpoint the respond with the parsed data.
