@@ -6,9 +6,15 @@ A client to parse an interpret the data received from [CS:GO Game State Integrat
 
 #### function parseGameState(newGameState: string): GameState
 
-Parses the given game state string. Returns the parsed GameState object.
+Parses the given game state JSON string. Returns the parsed GameState object or throws decoding error.
 
 **newGameState: string** This is the string that the CS:GO client sends as a HTTP POST message.
+
+#### function decodeGameState(newGameState: GameState): GameState
+
+Decodes the given game state object. Returns the decoded GameState object or throw decoding error.
+
+**newGameState: GameState** This is the parsed game state that the CS:GO client sends as a HTTP POST message.
 
 #### function getTeams(newGameState: GameState): Teams
 

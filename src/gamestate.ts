@@ -46,10 +46,13 @@ export type GameStateMap = t.TypeOf<typeof GameStateMapCodec>
 const GameStateRoundPhaseCodec = t.union([t.literal('live'), t.literal('freezetime'), t.literal('over')])
 export type GameStateRoundPhase = t.TypeOf<typeof GameStateRoundPhaseCodec>
 
-const GameStateRoundCodec = t.type({
+const GameStateRoundType = t.type({
   phase: GameStateRoundPhaseCodec,
+})
+const GameStateRoundStatePartial = t.partial({
   bomb: t.string,
 })
+const GameStateRoundCodec = t.intersection([GameStateRoundType, GameStateRoundStatePartial])
 export type GameStateRound = t.TypeOf<typeof GameStateRoundCodec>
 
 const GameStateTeamStringCodec = t.union([t.literal('T'), t.literal('CT')])
@@ -85,8 +88,6 @@ export type GameStatePlayerState = t.TypeOf<typeof GameStatePlayerStateCodec>
 const GameStatePlayerCodec = t.type({
   steamid: t.string,
   name: t.string,
-  observer_slot: t.number,
-  team: GameStateTeamStringCodec,
   activity: GameStateActivityCodec,
   state: GameStatePlayerStateCodec,
 })
@@ -186,13 +187,17 @@ const GameStateGrenadeNameCodec = t.union([
 ])
 export type GameStateGrenadeName = t.TypeOf<typeof GameStateGrenadeNameCodec>
 
-const GameStateGrenadeCodec = t.type({
-  type: t.literal('Grenade'),
-  name: GameStateGrenadeNameCodec,
-  paintkit: t.string,
-  ammo_reserve: t.number,
-  state: GameStateWeaponStateCodec,
+const GameStateGrenadeType = t.type({
+  owner: t.number,
+  lifetime: t.string,
+  type: t.string,
 })
+const GameStateGrenadePartial = t.partial({
+  effecttime: t.string,
+  position: t.string,
+  velocity: t.string,
+})
+const GameStateGrenadeCodec = t.intersection([GameStateGrenadeType, GameStateGrenadePartial])
 export type GameStateGrenade = t.TypeOf<typeof GameStateGrenadeCodec>
 
 export const GameStateCodec = t.type({

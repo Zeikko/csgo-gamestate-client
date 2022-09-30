@@ -7,10 +7,14 @@ export { Weapons } from './weapons'
 
 export const parseGameState = (newGameState: string): GameState => {
   const parsed: GameState = JSON.parse(newGameState)
-  const result = GameStateCodec.decode(parsed)
+  return decodeGameState(parsed)
+}
+
+export const decodeGameState = (newGameState: GameState): GameState => {
+  const result = GameStateCodec.decode(newGameState)
   const error = reporter.report(result)
   if (error.length) {
     throw new Error(error.join(', '))
   }
-  return parsed
+  return newGameState
 }
