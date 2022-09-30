@@ -9,14 +9,18 @@ const GameStateProviderCodec = t.type({
 })
 export type GameStateProvider = t.TypeOf<typeof GameStateProviderCodec>
 
-const GameStateTeamCodec = t.type({
+const GameStateTeamType = t.type({
   score: t.number,
-  name: t.string,
-  flag: t.string,
   consecutive_round_losses: t.number,
   timeouts_remaining: t.number,
   matches_won_this_series: t.number,
 })
+const GameStateTeamPartial = t.partial({
+  name: t.string,
+  flag: t.string,
+})
+const GameStateTeamCodec = t.intersection([GameStateTeamType, GameStateTeamPartial])
+
 export type GameStateTeam = t.TypeOf<typeof GameStateTeamCodec>
 
 const GameStateModeCodec = t.union([t.literal('casual'), t.literal('competitive')])
