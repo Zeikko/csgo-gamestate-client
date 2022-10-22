@@ -46,7 +46,8 @@ const isSecondary = (weapon: string): boolean => secondaryNames.includes(weapon)
 const isKnife = (weapon: string): boolean => weapon.indexOf('knife') >= 0 || weapon.indexOf('bayonet') >= 0
 const isBomb = (weapon: string): boolean => weapon === 'weapon_c4'
 const isTaser = (weapon: string): boolean => weapon === 'weapon_taser'
-const isPrimary = (weapon: string): boolean => !isGrenade(weapon) && !isSecondary(weapon) && !isKnife(weapon) && !isBomb(weapon) && !isTaser(weapon)
+const isPrimary = (weapon: string): boolean =>
+  !isGrenade(weapon) && !isSecondary(weapon) && !isKnife(weapon) && !isBomb(weapon) && !isTaser(weapon)
 
 export const classifyWeapons = (weapons: GameStateAllPlayerWeapons): Weapons => {
   const weaponsArray = weaponsToArray(weapons)

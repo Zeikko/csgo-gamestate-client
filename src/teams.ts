@@ -1,5 +1,5 @@
-import { GameState, GameStateTeam, GameStateTeamString } from "./gamestate"
-import { improvePlayer, Player } from "./player"
+import { GameState, GameStateTeam, GameStateTeamString } from './gamestate'
+import { improvePlayer, Player } from './player'
 
 export interface Teams {
   leftPlayers: Player[]

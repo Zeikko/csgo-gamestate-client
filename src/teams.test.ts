@@ -3,7 +3,7 @@ import { getTeams } from './teams'
 import { playingGameState } from './fixtures/gamestate'
 
 describe('getTeams', () => {
-  it('returns parse gamestate', () => {
+  it('returns teams', () => {
     const parsed = parseGameState(playingGameState)
     expect(getTeams(parsed)).toMatchSnapshot()
   })

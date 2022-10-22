@@ -2,7 +2,7 @@ import { parseGameState } from './index'
 import { playingGameState } from './fixtures/gamestate'
 
 describe('parseGameState', () => {
-  it('returns parse gamestate', () => {
+  it('returns parses gamestate', () => {
     expect(parseGameState(playingGameState)).toMatchSnapshot()
   })
 

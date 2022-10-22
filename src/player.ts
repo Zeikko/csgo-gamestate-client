@@ -1,8 +1,8 @@
-import { GameStateAllPlayer } from "./gamestate";
-import { classifyWeapons, Weapons } from "./weapons";
+import { GameState, GameStateActivity, GameStateAllPlayer, GameStatePlayer } from './gamestate'
+import { classifyWeapons, Weapons } from './weapons'
 
 type TeamString = 'CT' | 'T'
-interface PlayerState {
+export interface PlayerState {
   health: number
   armor: number
   helmet: boolean
@@ -15,7 +15,7 @@ interface PlayerState {
   roundTotalDamage: number
   equipmentValue: number
 }
-interface MatchStats {
+export interface MatchStats {
   kills: number
   assists: number
   deaths: number
@@ -32,6 +32,9 @@ export interface Player {
   weapons: Weapons
 }
 
+export interface ActivePlayer extends Player {
+  activity: GameStateActivity
+}
 
 export const improvePlayer = (player: GameStateAllPlayer): Player => {
   return {
@@ -52,6 +55,15 @@ export const improvePlayer = (player: GameStateAllPlayer): Player => {
       equipmentValue: player.state.equip_value,
     },
     matchStats: player.match_stats,
-    weapons: classifyWeapons(player.weapons)
+    weapons: classifyWeapons(player.weapons),
+  }
+}
+
+export const getActivePlayer = (gameState: GameState): ActivePlayer => {
+  const player: GameStateAllPlayer = gameState.allplayers[gameState.player.steamid]
+  const improvedPlayer = improvePlayer(player)
+  return {
+    activity: gameState.player.activity,
+    ...improvedPlayer,
   }
 }

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getActivePlayer returns active player 1`] = `
+Object {
+  "activity": "playing",
+  "matchStats": Object {
+    "assists": 3,
+    "deaths": 19,
+    "kills": 22,
+    "mvps": 3,
+    "score": 52,
+  },
+  "name": "allu",
+  "observerSlot": 1,
+  "state": Object {
+    "armor": 100,
+    "burning": 0,
+    "defusekit": false,
+    "equipmentValue": 6850,
+    "flashed": 0,
+    "health": 100,
+    "helmet": true,
+    "money": 500,
+    "roundHeadshotsKills": 0,
+    "roundKills": 3,
+    "roundTotalDamage": 222,
+  },
+  "team": "T",
+  "weapons": Object {
+    "bomb": false,
+    "grenades": Array [
+      "weapon_molotov",
+    ],
+    "knife": "weapon_bayonet",
+    "primary": "weapon_awp",
+    "secondary": "weapon_glock",
+  },
+}
+`;

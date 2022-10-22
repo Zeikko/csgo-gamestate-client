@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`parseGameState returns parse gamestate 1`] = `
+exports[`parseGameState returns parses gamestate 1`] = `
 Object {
   "allplayers": Object {
     "76561197961610974": Object {

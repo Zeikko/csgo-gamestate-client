@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getTeams returns parse gamestate 1`] = `
+exports[`getTeams returns teams 1`] = `
 Object {
   "leftPlayers": Array [
     Object {

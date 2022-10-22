@@ -152,9 +152,8 @@ const GameStateAllPlayerWeaponsCodec = t.partial({
 })
 export type GameStateAllPlayerWeapons = t.TypeOf<typeof GameStateAllPlayerWeaponsCodec>
 
-const GameStateAllPlayerCodec = t.type({
+const GameStateAllPlayerType = t.type({
   name: t.string,
-  observer_slot: t.number,
   team: GameStateTeamStringCodec,
   state: GameStateAllPlayerStateCodec,
   match_stats: GameStateAllPlayerMatchStatsCodec,
@@ -162,6 +161,10 @@ const GameStateAllPlayerCodec = t.type({
   position: t.string,
   forward: t.string,
 })
+const GameStateAllPlayerPartial = t.type({
+  observer_slot: t.number,
+})
+const GameStateAllPlayerCodec = t.intersection([GameStateAllPlayerType, GameStateAllPlayerPartial])
 export type GameStateAllPlayer = t.TypeOf<typeof GameStateAllPlayerCodec>
 
 const GameStatePhaseCodec = t.union([
